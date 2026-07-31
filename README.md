@@ -1,136 +1,110 @@
-# SovannKiri Attendance System
+# SovannKiri Teacher Attendance Management System
 
-Laravel 12 + React + MySQL + Bootstrap 5 + GPS/QR Attendance + Khmer/English
+A GPS-based teacher attendance management system for SovannKiri Primary School. Built with React, TypeScript, Vite, Tailwind CSS, and Supabase.
 
-## សូមអានការពន្យល់ / Read this first
+## Features
 
-កម្មវិធីនេះប្រើ Laravel 12 (PHP) សម្រាប់ backend, React សម្រាប់ frontend, MySQL សម្រាប់ database, និង Bootstrap 5 សម្រាប់ UI.
+- **GPS Attendance** — Teachers check in/out using GPS location with Haversine distance verification
+- **Dashboard** — Admin overview of present, late, absent, and on-leave teachers
+- **Teacher Management** — Full CRUD for teacher profiles with departments
+- **Leave Requests** — Teachers request leave; principals/admins approve or reject
+- **ID Cards** — Generate, preview, and print school ID cards with QR codes
+- **Reports** — Daily, monthly, and yearly attendance reports
+- **Notifications** — Real-time notifications for leave approvals and announcements
+- **QR Verification** — Scan-to-verify ID card authenticity
+- **Bilingual** — Full English and Khmer language support
+- **Dark Mode** — Complete dark theme support
 
-## តម្រូវការ / Requirements
+## Technology Stack
 
-1. **PHP 8.2+** — ទាញយកពី https://www.php.net/
-2. **Composer** — ទាញយកពី https://getcomposer.org/
-3. **Node.js 18+** — ទាញយកពី https://nodejs.org/
-4. **MySQL** (via XAMPP) — ទាញយកពី https://www.apachefriends.org/
-5. **npm** — មាននៅក្នុង Node.js
+- **Frontend:** React 18, TypeScript, Vite, Tailwind CSS
+- **Backend:** Supabase (PostgreSQL, Auth, Storage, Edge Functions)
+- **Icons:** Lucide React
+- **QR Codes:** qrcode.react
+- **Maps/GPS:** Browser Geolocation API with Haversine distance calculation
 
-## ជំហានដំឡើង / Installation Steps
+## Installation
 
-### ១. ដំឡើង XAMPP
-- ទាញយក XAMPP និងដំឡើង
-- បើក XAMPP Control Panel
-- ចាប់ផ្តើម **Apache** និង **MySQL**
+### Prerequisites
 
-### ២. បង្កើត Database
-- បើក browser ចូល http://localhost/phpmyadmin
-- បង្កើត database ឈ្មោះ `sovannkiri_attendance`
-- Encoding: `utf8mb4_unicode_ci`
+- Node.js 18+
+- npm or pnpm
 
-### ៣. ដាក់កូដទៅក្នុង Laravel folder
-- Copy រាល់ file ទាំងអស់ពី folder `laravel-project` នេះ ទៅដាក់ក្នុង Laravel folder របស់អ្នក
+### Setup
 
-### ៤. ដំឡើង PHP Dependencies
 ```bash
-composer install
-```
-
-### ៥. ដំឡើង Frontend Dependencies
-```bash
+# Install dependencies
 npm install
-```
 
-### ៦. កំណត់ Environment
-```bash
-copy .env.example .env
-php artisan key:generate
-```
-
-កែប្រែ `.env` ប្រសិនបើចាំបាច់:
-```
-DB_DATABASE=sovannkiri_attendance
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-### ៧. រត់ Database Migration + Seeder
-```bash
-php artisan migrate
-php artisan db:seed
-```
-
-### ៨. រត់គេហទំព័រ
-បើក terminal ២:
-
-**Terminal ១ (Laravel API):**
-```bash
-php artisan serve
-```
-→ API រត់នៅ http://localhost:8000
-
-**Terminal ២ (React Frontend):**
-```bash
+# Start development server
 npm run dev
-```
-→ គេហទំព័ររត់នៅ http://localhost:5173
 
-### ៩. បើក browser
-ចូល http://localhost:5173
+# Build for production
+npm run build
 
-## គណនីសម្រាប់ Login
-
-| ឈ្មោះ | អ៊ីមែល | ពាក្យសម្ងាត់ | តួនាទី |
-|------|--------|------------|-------|
-| Hour Soknith | hour.soknith@sovannkiri.edu.kh | Soknith27 | Admin |
-| Mao Nath | mao.nath@sovannkiri.edu.kh | NATH@@sovann | Admin |
-| Hol Kimhien | hol.kimhien@sovannkiri.edu.kh | KIMhien@@Sovan | Teacher |
-| Oeung Rum | oeung.rum@sovannkiri.edu.kh | RUM@@Kiry | Teacher |
-| Y Saman | y.saman@sovannkiri.edu.kh | SAMan@@Kiry | Teacher |
-| Hang Sinuon | hang.sinuon@sovannkiri.edu.kh | SINuon@@sovann | Teacher |
-| Try Chanther | try.chanther@sovannkiri.edu.kh | CHANther@@sova | Teacher |
-| Khvea Vanra | khvea.vanra@sovannkiri.edu.kh | VANra@@kiry | Teacher |
-| Ek Pisey | ek.pisey@sovannkiri.edu.kh | PIsey@@kiry | Teacher |
-| Soeurng Thary | soeurng.thary@sovannkiri.edu.kh | THAry@@sovann | Teacher |
-| Ken Many | ken.many@sovannkiri.edu.kh | MANY@@sovann | Teacher |
-| Lyy Naa | lyy.naa@sovannkiri.edu.kh | LYna@@Kiry | Teacher |
-
-## មុខងារ / Features
-
-- **Login** — ចូលប្រព័ន្ធជាមួយអ៊ីមែល និងពាក្យសម្ងាត់
-- **Dashboard** — មើលសង្ខេបវត្តមានប្រចាំថ្ងៃ និងប្រចាំខែ
-- **GPS Attendance** — ចុះឈ្មោះចូល/ចេញជាមួយ GPS location
-- **QR Code** — បង្កើត និងស្កេន QR Code
-- **Teacher Management** — គ្រប់គ្រងព័ត៌មានគ្រូបង្រៀន (Admin)
-- **Reports** — របាយការណ៍ប្រចាំថ្ងៃ និងប្រចាំខែ
-- **Settings** — កំណត់ GPS, ម៉ោងវេន (Admin)
-- **Khmer/English** — ប្តូរភាសាបាន
-
-## រចនាសម្ព័ន្ធ / Structure
-
-```
-laravel-project/
-├── app/
-│   ├── Http/Controllers/Api/    # API Controllers
-│   └── Models/                  # Eloquent Models
-├── database/
-│   ├── migrations/              # Database tables
-│   └── seeders/                 # Sample data
-├── resources/
-│   ├── css/app.css              # Bootstrap 5 + custom styles
-│   └── js/                      # React frontend
-│       ├── Components/          # Reusable components
-│       ├── Contexts/           # Auth & i18n contexts
-│       ├── Hooks/              # GPS, Toast hooks
-│       ├── i18n/               # Khmer/English translations
-│       ├── Lib/                # API client
-│       └── Pages/              # Page components
-├── routes/api.php              # API routes
-├── composer.json               # PHP dependencies
-├── package.json                # JS dependencies
-└── vite.config.js              # Vite config
+# Preview production build
+npm run preview
 ```
 
-## បញ្ហាញ៉ក់ / Troubleshooting
+### Environment Variables
 
-- **CORS error**: ប្រាកដថា `SANCTUM_STATEFUL_DOMAINS` នៅក្នុង `.env` មាន `localhost:5173`
-- **Database connection**: ប្រាកដថា MySQL រត់នៅ XAMPP ហើយ database `sovannkiri_attendance` មានរួច
-- **GPS not working**: ត្រូវប្រើ HTTPS ឬ localhost (browser ត្រូវការ secure context សម្រាប់ GPS)
+The Supabase credentials are pre-configured. The app connects automatically.
+
+## User Roles
+
+| Role | Access |
+|------|--------|
+| Super Admin | Full system access including settings and user management |
+| Admin | Manage teachers, attendance, ID cards, reports, departments |
+| Principal | View reports, approve leave, manage teachers |
+| Teacher | GPS attendance check in/out, leave requests, view ID card, profile |
+
+## GPS Attendance Flow
+
+1. Teacher presses Check In on the attendance page
+2. App reads GPS coordinates (latitude, longitude, accuracy)
+3. System calculates distance to school using Haversine formula
+4. If within configured radius (default 150m), attendance is recorded
+5. Status determined by time: Present (on time) or Late (after grace period)
+6. Teacher checks out at end of day
+
+## Project Structure
+
+```
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── idcard/          # ID card display and photo upload
+│   ├── contexts/            # Auth and I18n contexts
+│   ├── hooks/              # GPS, toast, and other custom hooks
+│   ├── lib/                # API client and Supabase config
+│   └── pages/              # Application pages
+├── supabase/
+│   └── migrations/         # Database migrations and RLS policies
+├── public/                 # Static assets and favicon
+├── index.html              # HTML entry point
+├── package.json
+├── vite.config.ts
+└── tailwind.config.js
+```
+
+## Configuration
+
+School settings (GPS coordinates, attendance radius, check-in times, school name) are managed in the Settings page and stored in Supabase.
+
+## Deployment
+
+The app can be deployed to any static hosting provider:
+
+```bash
+npm run build
+# Deploy the dist/ folder
+```
+
+## Developer
+
+**Hour Soknith**
+SovannKiri Primary School
+
+## License
+
+MIT License © 2026 SovannKiri Teacher Attendance Management System
